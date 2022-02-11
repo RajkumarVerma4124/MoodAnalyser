@@ -23,5 +23,22 @@ namespace TestingMoodAnalyser
             ///Asert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCategory("Happy Message")]
+        [TestMethod]
+        public void TestHappyMoodMessage()
+        {
+            ///AAA
+            ///Arange
+            string msg = "I am in Any Mood";
+            string expected = "happy";
+            MoodAnalyse mood = new MoodAnalyse();
+
+            ///Act
+            string actual = mood.AnalyzeMood(msg);
+
+            ///Asert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
