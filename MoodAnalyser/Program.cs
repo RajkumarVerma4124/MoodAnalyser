@@ -11,16 +11,17 @@ namespace MoodAnalyser
     /// </summary>
     public class Program
     {
+        public static string msg = null;
         //Entry point to the program
         public static void Main(string[] args)
         {
             //Displaying the welcome message
             Console.WriteLine("Welcome To The Mood Analyser Program");
 
-            //Calling the mood analyser object(UC1)
-            MoodAnalyse mood = new MoodAnalyse("Today Is A Happy Day For Me");
+            //Calling the mood analyser object(UC1)  
+            MoodAnalyse mood = new MoodAnalyse(msg);
             string resMood = mood.AnalyzeMood();
-            Console.WriteLine("The mood is {0}",resMood);
+            Console.WriteLine(resMood);
             Console.ReadLine();
         }
     }

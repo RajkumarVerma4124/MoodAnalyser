@@ -10,7 +10,7 @@ namespace TestingMoodAnalyser
     [TestClass]
     public class TestingMood
     {
-        //Method to test sad message
+        //Method to test sad message(UC1-TC1.1)
         [TestCategory("Sad Message")]
         [TestMethod]
         public void TestSadMoodMessage()
@@ -28,7 +28,7 @@ namespace TestingMoodAnalyser
             Assert.AreEqual(expected, actual);
         }
 
-        //Method to test happy message
+        //Method to test happy message(UC1-TC1.2)
         [TestCategory("Happy Message")]
         [TestMethod]
         public void TestHappyMoodMessage()

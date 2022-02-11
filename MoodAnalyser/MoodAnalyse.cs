@@ -11,22 +11,31 @@ namespace MoodAnalyser
     /// </summary>
     public class MoodAnalyse
     {
-        //Declaring varibale
+        //Declaring varibale(Refactor)
         public string message;
 
-        //Constructor to initialize message 
+        //Constructor to initialize message(Refactor) 
         public MoodAnalyse(string message)
         {
             this.message = message;
         }
 
-        //Method to analyse the mood from  the given message
+        //Method to analyse the mood from  the given message(UC1)
         public string AnalyzeMood()
         {
-            if (message.ToLower().Contains("sad"))
-                return "sad";
-            else
-                return "happy";
+            //Handling exception if user provide null value(UC2)
+            try
+            {
+                if (message.ToLower().Contains("sad"))
+                    return "sad";
+                else
+                    return "happy";
+            }
+            catch(NullReferenceException ex)
+            {
+                return ex.Message;
+            }
+            
         }
     }
 }
