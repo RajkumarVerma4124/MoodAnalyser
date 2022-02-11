@@ -56,13 +56,58 @@ namespace TestingMoodAnalyser
             string msg = null;
             string expected = "happy";
             string actual = null;
-            MoodAnalyse mood = new MoodAnalyse(msg); 
-           
+            MoodAnalyse mood = new MoodAnalyse(msg);
+
+            ///Act
             actual = mood.AnalyzeMood();
                   
             ///Asert
             Assert.AreEqual(expected, actual);
-            
+        }
+
+        //Method to test custom exception message(UC3-TC3.1)
+        [TestCategory("Custom Exception")]
+        [TestMethod]
+        public void TestCustomNullException()
+        {
+            ///AAA
+            ///Arange
+            string msg = null;
+            string expected = "Message should not be null";
+            MoodAnalyse mood = new MoodAnalyse(msg);
+
+            try
+            {
+                ///Act
+                string actual = mood.AnalyzeMood();
+            }
+            catch(MoodAnalysisException e)
+            {
+                ///Asert
+                Assert.AreEqual(expected, e.Message);
+            }   
+        }
+
+        //Method to test custom exception message(UC3-TC3.2)
+        [TestCategory("Custom Exception")]
+        [TestMethod]
+        public void TestCustomEmptyException()
+        {
+            ///AAA
+            ///Arange
+            string msg = "";
+            string expected = "Message should not be empty";
+            MoodAnalyse mood = new MoodAnalyse(msg);
+            try
+            {
+                ///Act
+                string actual = mood.AnalyzeMood();
+            }
+            catch (MoodAnalysisException e)
+            {
+                ///Asert
+                Assert.AreEqual(expected, e.Message);
+            }
         }
     }
 }
