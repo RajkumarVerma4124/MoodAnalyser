@@ -16,6 +16,11 @@ namespace MoodAnalyser
         {
             //Displaying the welcome message
             Console.WriteLine("Welcome To The Mood Analyser Program");
+
+            //Calling the mood analyser object(UC1)
+            MoodAnalyse mood = new MoodAnalyse();
+            string resMood = mood.AnalyzeMood("Today Is A Happy Day For Me");
+            Console.WriteLine("The mood is {0}",resMood);
             Console.ReadLine();
         }
     }
