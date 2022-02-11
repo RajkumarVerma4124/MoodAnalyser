@@ -31,9 +31,9 @@ namespace MoodAnalyser
                 else
                     return "happy";
             }
-            catch(NullReferenceException ex)
+            catch(NullReferenceException)
             {
-                return ex.Message;
+                return "happy";
             }
             
         }

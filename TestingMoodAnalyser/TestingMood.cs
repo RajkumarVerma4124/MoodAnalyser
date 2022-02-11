@@ -45,5 +45,24 @@ namespace TestingMoodAnalyser
             ///Asert
             Assert.AreEqual(expected, actual);
         }
+
+        //Method to test happy message(UC2-TC2.1)
+        [TestCategory("Null Exception")]
+        [TestMethod]
+        public void TestNullMessageException()
+        {
+            ///AAA
+            ///Arange
+            string msg = null;
+            string expected = "happy";
+            string actual = null;
+            MoodAnalyse mood = new MoodAnalyse(msg); 
+           
+            actual = mood.AnalyzeMood();
+                  
+            ///Asert
+            Assert.AreEqual(expected, actual);
+            
+        }
     }
 }
