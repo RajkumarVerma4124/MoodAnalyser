@@ -11,8 +11,17 @@ namespace MoodAnalyser
     /// </summary>
     public class MoodAnalyse
     {
+        //Declaring varibale
+        public string message;
+
+        //Constructor to initialize message 
+        public MoodAnalyse(string message)
+        {
+            this.message = message;
+        }
+
         //Method to analyse the mood from  the given message
-        public string AnalyzeMood(string message)
+        public string AnalyzeMood()
         {
             if (message.ToLower().Contains("sad"))
                 return "sad";
