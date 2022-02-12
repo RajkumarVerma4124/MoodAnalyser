@@ -13,13 +13,14 @@ namespace MoodAnalyser
         //Declaring exception type 
         public ExceptionTypes type;
 
-        //Using enum to differentiate the mood analysis errors(UC3)
+        //Using enum to differentiate the mood analysis errors(UC3,UC4&UC5)
         public enum ExceptionTypes
         {
             NULL_MOOD_EXCEPTION,
             EMPTY_MOOD_EXCEPTION,
             CLASS_NOT_FOUND,
-            CONSTRUCTOR_NOT_FOUND
+            CONSTRUCTOR_NOT_FOUND,
+            METHOD_NOT_FOUND
         }
 
         //Constructor to initialize the enum exception types(UC3)

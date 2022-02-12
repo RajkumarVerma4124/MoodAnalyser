@@ -10,19 +10,34 @@ namespace TestingMoodAnalyser
     [TestClass]
     public class TestingMood
     {
+        MoodAnalyse setMood, setMoodAny, setNull, setEmpty;
+        MoodAnalyserReflector factory;
+
+        //Initializing the constructor
+        [TestInitialize]
+        public void SetUp()
+        {
+            string sadMessage = "I am in Sad Mood";
+            setMood = new MoodAnalyse(sadMessage);
+            string happyMessage = "I am in Any Mood";
+            setMoodAny = new MoodAnalyse(happyMessage);
+            string nullMessage = null;
+            setNull = new MoodAnalyse(nullMessage);
+            string emptyMessage = "";
+            setEmpty = new MoodAnalyse(emptyMessage);
+            factory = new MoodAnalyserReflector();
+        }
         //Method to test sad message(UC1-TC1.1)
         [TestCategory("Sad Message")]
         [TestMethod]
         public void TestSadMoodMessage()
         {
             ///AAA
-            ///Arange
-            string msg = "I am in Sad Mood";
+            ///Arange        
             string expected = "sad";
-            MoodAnalyse mood = new MoodAnalyse(msg);
 
             ///Act
-            string actual = mood.AnalyzeMood();
+            string actual = setMood.AnalyzeMood();
           
             ///Asert
             Assert.AreEqual(expected, actual);
@@ -35,12 +50,10 @@ namespace TestingMoodAnalyser
         {
             ///AAA
             ///Arange
-            string msg = "I am in Any Mood";
             string expected = "happy";
-            MoodAnalyse mood = new MoodAnalyse(msg);
 
             ///Act
-            string actual = mood.AnalyzeMood();
+            string actual = setMoodAny.AnalyzeMood();
 
             ///Asert
             Assert.AreEqual(expected, actual);
@@ -53,13 +66,10 @@ namespace TestingMoodAnalyser
         {
             ///AAA
             ///Arange
-            string msg = null;
             string expected = "happy";
-            string actual = null;
-            MoodAnalyse mood = new MoodAnalyse(msg);
 
             ///Act
-            actual = mood.AnalyzeMood();
+            string actual = setNull.AnalyzeMood();
                   
             ///Asert
             Assert.AreEqual(expected, actual);
@@ -72,14 +82,11 @@ namespace TestingMoodAnalyser
         {
             ///AAA
             ///Arange
-            string msg = null;
             string expected = "Message should not be null";
-            MoodAnalyse mood = new MoodAnalyse(msg);
-
             try
             {
                 ///Act
-                string actual = mood.AnalyzeMood();
+                string actual = setNull.AnalyzeMood();
             }
             catch(MoodAnalysisException e)
             {
@@ -95,13 +102,11 @@ namespace TestingMoodAnalyser
         {
             ///AAA
             ///Arange
-            string msg = "";
             string expected = "Message should not be empty";
-            MoodAnalyse mood = new MoodAnalyse(msg);
             try
             {
                 ///Act
-                string actual = mood.AnalyzeMood();
+                string actual = setEmpty.AnalyzeMood();
             }
             catch (MoodAnalysisException e)
             {
@@ -121,9 +126,7 @@ namespace TestingMoodAnalyser
             object obj = null;
             try
             {
-                MoodAnalyzerFactory factory = new MoodAnalyzerFactory();
                 obj = factory.CreateMoodAnalyserObject(className, constructor);
-
             }
             catch (MoodAnalysisException ex)
             {
@@ -142,9 +145,7 @@ namespace TestingMoodAnalyser
             object obj = null;
             try
             {
-                MoodAnalyzerFactory factory = new MoodAnalyzerFactory();
                 obj = factory.CreateMoodAnalyserObject(className, constructor);
-
             }
             catch (MoodAnalysisException actual)
             {
@@ -162,9 +163,7 @@ namespace TestingMoodAnalyser
             object obj = null;
             try
             {
-                MoodAnalyzerFactory factory = new MoodAnalyzerFactory();
                 obj = factory.CreateMoodAnalyserObject(className, constructor);
-
             }
             catch (MoodAnalysisException actual)
             {
@@ -184,9 +183,7 @@ namespace TestingMoodAnalyser
             object obj = null;
             try
             {
-                MoodAnalyzerFactory factory = new MoodAnalyzerFactory();
                 obj = factory.CreateMoodAnalyserParameterizedObject("MoodAnalyse", "MoodAnalyse", message);
-
             }
             catch (MoodAnalysisException actual)
             {
@@ -207,9 +204,7 @@ namespace TestingMoodAnalyser
             object obj = null;
             try
             {
-                MoodAnalyzerFactory factory = new MoodAnalyzerFactory();
                 obj = factory.CreateMoodAnalyserParameterizedObject(className, "MoodAnalyse", message);
-
             }
             catch (MoodAnalysisException actual)
             {
@@ -229,9 +224,7 @@ namespace TestingMoodAnalyser
             object obj = null;
             try
             {
-                MoodAnalyzerFactory factory = new MoodAnalyzerFactory();
                 obj = factory.CreateMoodAnalyserParameterizedObject("MoodAnalyse", constructor, message);
-
             }
             catch (MoodAnalysisException actual)
             {
