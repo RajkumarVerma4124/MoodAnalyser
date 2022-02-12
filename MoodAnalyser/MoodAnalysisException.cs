@@ -20,7 +20,9 @@ namespace MoodAnalyser
             EMPTY_MOOD_EXCEPTION,
             CLASS_NOT_FOUND,
             CONSTRUCTOR_NOT_FOUND,
-            METHOD_NOT_FOUND
+            METHOD_NOT_FOUND,
+            EMPTY_MESSAGE,
+            NO_SUCH_FIELD
         }
 
         //Constructor to initialize the enum exception types(UC3)
