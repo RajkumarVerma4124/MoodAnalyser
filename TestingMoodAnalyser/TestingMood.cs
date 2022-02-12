@@ -11,7 +11,7 @@ namespace TestingMoodAnalyser
     public class TestingMood
     {
         MoodAnalyse setMood, setMoodAny, setNull, setEmpty;
-        MoodAnalyserReflector factory;
+        MoodAnalyserReflector reflector;
 
         //Initializing the constructor
         [TestInitialize]
@@ -25,7 +25,7 @@ namespace TestingMoodAnalyser
             setNull = new MoodAnalyse(nullMessage);
             string emptyMessage = "";
             setEmpty = new MoodAnalyse(emptyMessage);
-            factory = new MoodAnalyserReflector();
+            reflector = new MoodAnalyserReflector();
         }
         //Method to test sad message(UC1-TC1.1)
         [TestCategory("Sad Message")]
@@ -126,7 +126,7 @@ namespace TestingMoodAnalyser
             object obj = null;
             try
             {
-                obj = factory.CreateMoodAnalyserObject(className, constructor);
+                obj = reflector.CreateMoodAnalyserObject(className, constructor);
             }
             catch (MoodAnalysisException ex)
             {
@@ -145,12 +145,13 @@ namespace TestingMoodAnalyser
             object obj = null;
             try
             {
-                obj = factory.CreateMoodAnalyserObject(className, constructor);
+                obj = reflector.CreateMoodAnalyserObject(className, constructor);
             }
             catch (MoodAnalysisException actual)
             {
                 Assert.AreEqual(expected, actual.Message);
             }
+            expected.Equals(obj);
         }
 
         //Method to test so mood analyser class return contructor not found(UC4-TC4.3)
@@ -163,7 +164,7 @@ namespace TestingMoodAnalyser
             object obj = null;
             try
             {
-                obj = factory.CreateMoodAnalyserObject(className, constructor);
+                obj = reflector.CreateMoodAnalyserObject(className, constructor);
             }
             catch (MoodAnalysisException actual)
             {
@@ -183,7 +184,7 @@ namespace TestingMoodAnalyser
             object obj = null;
             try
             {
-                obj = factory.CreateMoodAnalyserParameterizedObject("MoodAnalyse", "MoodAnalyse", message);
+                obj = reflector.CreateMoodAnalyserParameterizedObject("MoodAnalyse", "MoodAnalyse", message);
             }
             catch (MoodAnalysisException actual)
             {
@@ -204,7 +205,7 @@ namespace TestingMoodAnalyser
             object obj = null;
             try
             {
-                obj = factory.CreateMoodAnalyserParameterizedObject(className, "MoodAnalyse", message);
+                obj = reflector.CreateMoodAnalyserParameterizedObject(className, "MoodAnalyse", message);
             }
             catch (MoodAnalysisException actual)
             {
@@ -224,11 +225,37 @@ namespace TestingMoodAnalyser
             object obj = null;
             try
             {
-                obj = factory.CreateMoodAnalyserParameterizedObject("MoodAnalyse", constructor, message);
+                obj = reflector.CreateMoodAnalyserParameterizedObject("MoodAnalyse", constructor, message);
             }
             catch (MoodAnalysisException actual)
             {
                 Assert.AreEqual(expextedError, actual.Message);
+            }
+        }
+
+        //Method to invoke analyse mood method to return happy or sad(UC6-TC6.1)
+        [TestCategory("Reflection")]
+        [TestMethod]
+        [DataRow("happy")]
+        public void ReflectionReturnMethod(string expected)
+        {
+            string actual = reflector.InvokeAnalyserMethod("happy", "AnalyzeMood");
+            Assert.AreEqual(expected, actual);
+        }
+
+        //Method to invoke analyse mood method to return invalid method(UC6-TC6.2)
+        [TestCategory("Reflection")]
+        [TestMethod]
+        [DataRow("No Such Method")]
+        public void ReflectionReturnInvalidMethod(string expected)
+        {
+            try
+            {
+                string actual = reflector.InvokeAnalyserMethod("happy", "AnalyzerMood");
+            }
+            catch(MoodAnalysisException actual)
+            {
+                Assert.AreEqual(expected, actual.Message);
             }
         }
     }

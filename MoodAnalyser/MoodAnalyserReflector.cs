@@ -70,7 +70,7 @@ namespace MoodAnalyser
                 Type type = typeof(MoodAnalyse);
                 MethodInfo methodInfo = type.GetMethod(methodName);
                 MoodAnalyserReflector reflector = new MoodAnalyserReflector();
-                object moodAnalyserObject = reflector.CreateMoodAnalyserParameterizedObject("MoodAnalyser.MoodAnalyse", "MoodAnalyser", message);
+                object moodAnalyserObject = reflector.CreateMoodAnalyserParameterizedObject("MoodAnalyser.MoodAnalyse", "MoodAnalyse", message);
                 object info = methodInfo.Invoke(moodAnalyserObject, null);
                 return info.ToString();
             }
