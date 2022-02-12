@@ -13,10 +13,10 @@ namespace MoodAnalyser
     /// </summary>
     public class MoodAnalyzerFactory
     {
-        //Method to create mood analyser object
+        //Method To Create Mood Analyser Object Using Reflection(UC4)
         public object CreateMoodAnalyserObject(string className, string constructor)
         {
-            //Matching the pattern for extension of namespance
+            //Matching The Pattern For Extension Of Namespace
             string p = @"."+constructor+"$";
             Match result = Regex.Match(className, p);
             if (result.Success)
@@ -37,6 +37,29 @@ namespace MoodAnalyser
             {
                 throw new MoodAnalysisException(MoodAnalysisException.ExceptionTypes.CONSTRUCTOR_NOT_FOUND, "The Given Constructor Is Not Found");
             }
+        }
+
+        //Method To Use Create MoodAnalyser with Parameter Constructor Using Reflection(UC5)
+        public object CreateMoodAnalyserParameterizedObject(string className, string constructor, string message)
+        {          
+            Type type = typeof(MoodAnalyse);
+            if (type.Name.Equals(className) || type.FullName.Equals(className))
+            {
+                if (type.Name.Equals(constructor))
+                {
+                    ConstructorInfo constructorInfo = type.GetConstructor(new[] { typeof(string) });
+                    var obj = constructorInfo.Invoke(new object[] { message });
+                    return obj;
+                }
+                else
+                {
+                    throw new MoodAnalysisException(MoodAnalysisException.ExceptionTypes.CONSTRUCTOR_NOT_FOUND, "No Such Constructor");
+                }
+            }
+            else          
+            {
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionTypes.CLASS_NOT_FOUND, "No Such Class");
+            }   
         }
     }
 }
