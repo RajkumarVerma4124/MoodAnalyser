@@ -14,6 +14,12 @@ namespace MoodAnalyser
         //Declaring varibale(Refactor)
         public string message;
 
+        //Default constructor(UC4)
+        public MoodAnalyse()
+        {
+            Console.WriteLine("Default constructor");
+        }
+
         //Constructor to initialize message(Refactor) 
         public MoodAnalyse(string message)
         {
