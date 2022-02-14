@@ -81,23 +81,23 @@ namespace MoodAnalyser
         }
 
         //Method to set the field dynamically using reflection(UC7)
-        public string SetField(string message, string fieldName)
+        public string SetField(string message, string propertyName)
         {
             try
             {
                 MoodAnalyse moodAnalyser = new MoodAnalyse();
                 Type type = typeof(MoodAnalyse);
-                FieldInfo fieldInfo = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
+                PropertyInfo propertyInfo = type.GetProperty(propertyName);
                 if (message == null)
                 {
                     throw new MoodAnalysisException(MoodAnalysisException.ExceptionTypes.EMPTY_MESSAGE, "Message should not be null");
                 }
-                fieldInfo.SetValue(moodAnalyser, message);
-                return moodAnalyser.message;
+                propertyInfo.SetValue(moodAnalyser, message);
+                return moodAnalyser.Message;
             }
             catch (NullReferenceException)
             {
-                throw new MoodAnalysisException(MoodAnalysisException.ExceptionTypes.NO_SUCH_FIELD, "Field is not found");
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionTypes.NO_SUCH_PROPERTY, "Property is not found");
             }
         }
     }
