@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoodAnalyser;
-using System;
 
 namespace TestingMoodAnalyser
 {
@@ -18,6 +17,7 @@ namespace TestingMoodAnalyser
         { 
             reflector = new MoodAnalyserReflector();
         }
+
         //Method to test sad and happy message(UC1-TC1.1 && TC1.2 && UC2-TC2.1)
         [TestCategory("Sad Or Happy Message && Null Exception")]
         [TestMethod]

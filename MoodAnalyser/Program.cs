@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoodAnalyser
 {
@@ -18,7 +15,7 @@ namespace MoodAnalyser
         {
             //Displaying the welcome message
             Console.WriteLine("Welcome To The Mood Analyser Program");
-
+            
             //Creating the object of mood analyser
             MoodAnalyse moodAnalyse = new MoodAnalyse();
             moodAnalyse.Message = "I am happy today";
